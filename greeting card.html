@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,23 +13,29 @@
             margin: 0;
             padding: 20px;
         }
+
         .card-container {
             position: relative;
             display: inline-block;
             max-width: 100%;
         }
+
         canvas {
             border-radius: 10px;
             max-width: 100%;
         }
+
         .input-container {
             margin-top: 20px;
         }
-        input, button {
+
+        input,
+        button {
             margin-top: 10px;
             padding: 10px;
             font-size: 16px;
         }
+
         button {
             background: #007bff;
             color: white;
@@ -36,14 +43,15 @@
             cursor: pointer;
             margin: 5px;
         }
+
         button:hover {
             background: #0056b3;
         }
     </style>
 </head>
-<body>
 
-    <h2>Customize Your Greeting Card dd</h2>
+<body>
+    <h2>Customize Your Greeting Card</h2>
 
     <div class="card-container">
         <canvas id="cardCanvas"></canvas>
@@ -52,56 +60,57 @@
     <div class="input-container">
         <input type="text" id="nameInput" placeholder="Enter your name">
         <button onclick="updateCard()">Apply Name</button>
-       
+        <button onclick="downloadCard()">Download Card</button>
     </div>
 
     <script>
         const canvas = document.getElementById("cardCanvas");
         const ctx = canvas.getContext("2d");
         const image = new Image();
-        image.src = "Ramadan.jpg"; // Replace with your actual image
-    
-        let isImageLoaded = false; // Step 1: Declare the variable
-    
+        image.src = "Ramadan.jpeg"; // Replace with your actual image
+
         image.onload = function () {
-            isImageLoaded = true; // Step 2: Set to true when image is loaded
             drawCard("[Your Name]"); // Default text
         };
-    
+
         function drawCard(name) {
             // Set the canvas size to match the image
             canvas.width = image.width;
             canvas.height = image.height;
-    
+
             // Draw the image on the canvas
             ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
-    
+
             // Customize text appearance
             ctx.font = "30px Arial"; // Adjust font size and type
-            ctx.fillStyle = "white"; // Adjust text color
+            ctx.fillStyle = "navy"; // Change text color to navy
             ctx.textAlign = "center";
             ctx.textBaseline = "bottom";
-    
+
             // Text shadow for better readability
             ctx.shadowColor = "black";
             ctx.shadowBlur = 5;
             ctx.shadowOffsetX = 2;
             ctx.shadowOffsetY = 2;
-    
+
             // Position text at the bottom of the image
             ctx.fillText(name, canvas.width / 2, canvas.height - 50); // Adjust Y position
         }
-    
+
         function updateCard() {
             const name = document.getElementById("nameInput").value.trim();
             if (name !== "") {
                 drawCard(name);
             }
         }
-    
-       
-        
-    </script>
 
+        function downloadCard() {
+            const link = document.createElement("a");
+            link.download = "personalized-greeting-card.png";
+            link.href = canvas.toDataURL("image/png");
+            link.click();
+        }
+    </script>
 </body>
+
 </html>
