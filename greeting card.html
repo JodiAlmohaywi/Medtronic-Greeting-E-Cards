@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personalized Greeting Card</title>
+    <title>بطاقة تهنئة مخصصة</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -51,16 +51,16 @@
 </head>
 
 <body>
-    <h2>Customize Your Greeting Card</h2>
+    <h2>خصص بطاقة التهنئة</h2>
 
     <div class="card-container">
         <canvas id="cardCanvas"></canvas>
     </div>
 
     <div class="input-container">
-        <input type="text" id="nameInput" placeholder="Enter your name">
-        <button onclick="updateCard()">Apply Name</button>
-        <button onclick="downloadCard()">Download Card</button>
+        <input type="text" id="nameInput" placeholder="أدخل اسمك">
+        <button onclick="updateCard()">تطبيق الاسم</button>
+        <button onclick="downloadCard()">تحميل البطاقة</button>
     </div>
 
     <script>
@@ -70,7 +70,7 @@
         image.src = "Eid alfitr (2).png"; // Replace with your actual image
 
         image.onload = function () {
-            drawCard("[Your Name]"); // Default text
+            drawCard("[اسمك]"); // Default text
         };
 
         function drawCard(name) {
@@ -87,12 +87,6 @@
             ctx.textAlign = "center";
             ctx.textBaseline = "bottom";
 
-            // Text shadow for better readability
-            ctx.shadowColor = "black";
-            ctx.shadowBlur = 5;
-            ctx.shadowOffsetX = 2;
-            ctx.shadowOffsetY = 2;
-
             // Position text at the bottom of the image
             ctx.fillText(name, canvas.width / 2, canvas.height - 50); // Adjust Y position
         }
@@ -106,7 +100,7 @@
 
         function downloadCard() {
             const link = document.createElement("a");
-            link.download = "personalized-greeting-card.png";
+            link.download = "بطاقة تهنئة مخصصة.png";
             link.href = canvas.toDataURL("image/png");
             link.click();
         }
